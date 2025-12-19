@@ -1,0 +1,15 @@
+# configs/eval.yaml
+include_env: env.yaml
+
+evaluation:
+  runs_per_map: 10
+  test_maps: "configs/test_maps/"   # placeholder path for test maps (or use generated)
+  T_max: 500
+
+metrics:
+  compute: ["time_to_find", "coverage_at_detection", "path_length", "success_rate"]
+  statistics: ["median", "IQR"]
+
+logging:
+  results_csv: "results/logs/eval_results.csv"
+  heatmap_folder: "results/figures/heatmaps"

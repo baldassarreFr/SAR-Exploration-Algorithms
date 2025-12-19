@@ -1,0 +1,33 @@
+# configs/dqn_small.yaml
+include_env: env.yaml
+
+algo: "DQN"
+training:
+  total_timesteps: 5000
+  eval_interval_steps: 20000
+  checkpoint_interval_steps: 10000
+
+dqn:
+  learning_rate: 1e-4
+  buffer_size: 100000
+  batch_size: 32
+  target_update_interval: 1000
+  gamma: 0.99
+  exploration:
+    start_eps: 1.0
+    end_eps: 0.1
+    decay_steps: 100000
+
+network:
+  conv_layers:
+    - filters: 32
+      kernel: 3
+    - filters: 64
+      kernel: 3
+  fc_size: 256
+
+logging:
+  tensorboard_log: "results/logs/dqn_tb"
+  save_checkpoints: true
+
+policy: "CnnPolicy"

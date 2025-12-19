@@ -1,0 +1,18 @@
+# configs/frontier.yaml
+include_env: env.yaml
+
+
+frontier:
+  method: "WFD"            # Wavefront frontier detection
+  replanning_interval: 5   # re-evaluate frontiers this often (timesteps)
+  clustering_distance: 2   # group frontiers within this manhattan distance
+  scoring:
+    weight_distance: 0.6
+    weight_area: 0.4
+    # score = w_distance * norm(dist) + w_area * norm(area)
+
+
+path_planner:
+  algorithm: "astar"
+  heuristic: "euclidean"
+  max_planning_time_s: 1.0  # safety timeout to avoid long planner calls

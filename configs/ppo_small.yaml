@@ -1,0 +1,31 @@
+# configs/ppo_small.yaml
+include_env: env.yaml
+
+algo: "PPO"
+training:
+  total_timesteps: 5000
+  eval_interval_steps: 20000
+  checkpoint_interval_steps: 10000
+
+ppo:
+  learning_rate: 3e-4
+  n_steps: 2048
+  batch_size: 64
+  n_epochs: 10
+  gamma: 0.99
+  clip_range: 0.2
+  ent_coef: 0.0
+
+network:
+  conv_layers:
+    - filters: 32
+      kernel: 3
+    - filters: 64
+      kernel: 3
+  fc_size: 256
+
+logging:
+  tensorboard_log: "results/logs/ppo_tb"
+  save_checkpoints: true
+
+policy: "CnnPolicy"
